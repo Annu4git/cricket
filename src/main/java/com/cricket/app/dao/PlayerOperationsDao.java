@@ -11,5 +11,4 @@ public interface PlayerOperationsDao {
 	public Optional<PlayerBean> getPlayer(int playerId);
 	public PlayerBean updatePlayer(PlayerBean player);
 	public void deletePlayer(int id);
-
 }
