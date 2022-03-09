@@ -13,15 +13,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.cricket.app.beans.PlayerBean;
+import com.cricket.app.beans.PlayerRecord;
 
 @Repository
 @Transactional
 public class PlayerOperationsDaoImpl implements PlayerOperationsDao{
 	@Autowired
 	PlayerRepository playerRepo;
+	@Autowired
+	RecordOperationsDao recordDao;
 	
-	
-	public PlayerBean addPlayer(@RequestBody PlayerBean player) {
+	public PlayerBean addPlayer(PlayerBean player) {
+		PlayerRecord record = new PlayerRecord(0, player, 0, 0, 0, 0, 0, 0);
+		recordDao.addRecord(record);
 		return playerRepo.save(player);
 	}
 	
