@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cricket.app.beans.PlayerBean;
-import com.cricket.app.dao.PlayerRepository;
 import com.cricket.app.service.PlayerService;
 
 @RestController
@@ -47,9 +46,9 @@ public class PlayerController {
 	}
 	
 	@DeleteMapping("/delete")
-	public ResponseEntity<Void> deletePlayer(@RequestParam int id){
-		playerService.deletePlayer(id);
-		return ResponseEntity.status(HttpStatus.OK).build();
+	public ResponseEntity<String> deletePlayer(@RequestParam int id){
+		return ResponseEntity.ok(playerService.deletePlayer(id));
+//		return ResponseEntity.status(HttpStatus.OK).build();
 		
 	}
 	

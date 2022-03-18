@@ -7,8 +7,8 @@ import com.cricket.app.beans.PlayerRecord;
 
 
 public interface RecordRepository extends JpaRepository<PlayerRecord, Integer> {
-	@Query("select r from PlayerRecord r where r.player.id = ?1")
-	public PlayerRecord getRecord(int playerId);
+	@Query("select r from PlayerRecord r where r.id = ?1")
+	public PlayerRecord getRecord(int recordId);
 }
 
 

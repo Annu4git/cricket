@@ -1,15 +1,14 @@
-package com.cricket.app.dao;
+package com.cricket.app.repository;
 
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.jpa.repository.Query;
 
 import com.cricket.app.beans.PlayerBean;
+import com.cricket.app.beans.PlayerRecord;
 
 
 public interface PlayerRepository extends JpaRepository<PlayerBean, Integer>{
 	
-
 }

@@ -25,20 +25,56 @@ public class RecordController {
 	@Autowired
 	RecordService recordService;
 
-	@PostMapping("/add")
-	public ResponseEntity<PlayerRecord> addRecord(@RequestBody PlayerRecord player){
-		return ResponseEntity.ok(recordService.addRecord(player));
+	/*
+	 * @PostMapping("/add") public ResponseEntity<PlayerRecord>
+	 * addRecord(@RequestBody PlayerRecord player){ return
+	 * ResponseEntity.ok(recordService.addRecord(player)); }
+	 * 
+	 * @GetMapping("/get/{id}") public ResponseEntity<PlayerRecord>
+	 * getRecord(@PathVariable int id){ return
+	 * ResponseEntity.ok(recordService.getRecord(id)); }
+	 */
+	@GetMapping("/getAll")
+	public ResponseEntity<List<PlayerRecord>> getAllRecords() {
+		return ResponseEntity.ok(recordService.getAllRecords());
+	}
+	@PutMapping("/update/totalRuns")
+	public ResponseEntity<PlayerRecord> updateTotalRuns(@RequestParam int playerId,@RequestParam int runs){
+		return ResponseEntity.ok(recordService.updateTotalRuns(playerId,runs));
 	}
 	
-	@GetMapping("/get/{id}")
-	public ResponseEntity<PlayerRecord> getRecord(@PathVariable int id){
-		return ResponseEntity.ok(recordService.getRecord(id));
+	@PutMapping("/update/totalWickets")
+	public ResponseEntity<PlayerRecord> updateTotalWicket(@RequestParam int playerId,@RequestParam int wicketCount){
+		return ResponseEntity.ok(recordService.updateTotalWicket(playerId,wicketCount));
+	}
+	
+	@PutMapping("/update/maxRuns")
+	public void updateMaxRuns(@RequestParam int playerId,@RequestParam int runs,int matchId){
+		recordService.updateMaxRuns(playerId,runs,matchId);
+	}
+	
+	@PutMapping("/update/maxWickets")
+	public void updateMaxWickets(@RequestParam int playerId,@RequestParam int wicketCount,int matchId){
+		recordService.updateMaxWickets(playerId,wicketCount,matchId);
+	}
+	@PutMapping("/update/totalMatches")
+	public ResponseEntity<PlayerRecord> updateTotalMatches(@RequestParam int playerId,@RequestParam int matchCount){
+		return ResponseEntity.ok(recordService.updateTotalMatches(playerId,matchCount));
+	}
+	@PutMapping("/update/totalCatches")
+	public ResponseEntity<PlayerRecord> updateTotalCatches(@RequestParam int playerId,@RequestParam int catchCount){
+		return ResponseEntity.ok(recordService.updateTotalCatches(playerId,catchCount));
 	}
 
-	
+	/*
+	 * @PutMapping("/update/maxMatches") public ResponseEntity<PlayerRecord>
+	 * updateMaxMatches(@RequestParam int playerId,@RequestParam int matchCount){
+	 * return
+	 * ResponseEntity.ok(recordService.updateMaxMatches(playerId,matchCount)); }
+	 */
 	@PutMapping("/update")
-	public ResponseEntity<PlayerRecord> updateRecord(@RequestBody PlayerRecord player){
-		return ResponseEntity.ok(recordService.updateRecord(player));
+	public ResponseEntity<PlayerRecord> updateRecord(@RequestParam int playerId){
+		return ResponseEntity.ok(recordService.updateRecord(playerId));
 	}
 	
 	@DeleteMapping("/delete")

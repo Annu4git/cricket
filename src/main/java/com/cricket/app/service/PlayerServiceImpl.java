@@ -39,9 +39,9 @@ public class PlayerServiceImpl implements PlayerService{
 	}
 
 	@Override
-	public void deletePlayer(int playerId) {
+	public String deletePlayer(int playerId) {
 		// TODO Auto-generated method stub
-		playerOp.deletePlayer(playerId);
+		return playerOp.deletePlayer(playerId).toString();
 		
 	}
 	

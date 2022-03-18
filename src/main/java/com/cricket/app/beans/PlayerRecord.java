@@ -1,5 +1,6 @@
 package com.cricket.app.beans;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,44 +13,55 @@ import javax.persistence.Table;
 public class PlayerRecord {
 	
 	@Id
+	@Column(name = "record_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@OneToOne
-	private PlayerBean player;
+	private String playerName;
 	private int totalRuns;
 	private int totalWicket;
-	private int maxRuns;
-	private int maxWickets;
 	private int totalCatches;
 	private int totalMatches;
-	private int maxMatches;
+//	private int total50s;
+//	private int total100s;
+	private int maxRuns;
+	private int maxWickets;
+	private int maxCatches;
+	private int matchIdForMaxRuns;
+	private int matchIdForMaxWickets;
+	private int matchIdForMaxCatches;
 	
 	public PlayerRecord() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PlayerRecord(int totalRuns,PlayerBean player, int totalWicket, int maxRuns, int maxWickets, int totalCatches, int totalMatches,
-			int maxMatches) {
+	public PlayerRecord(int totalRuns, int totalWicket, int totalCatches, int totalMatches, int maxRuns, int maxWickets,
+			int maxCatches, int matchIdForMaxRuns, int matchIdForMaxWickets, int matchIdForMaxCatches,String playerName) {
 		this.totalRuns = totalRuns;
 		this.totalWicket = totalWicket;
-		this.maxRuns = maxRuns;
-		this.maxWickets = maxWickets;
 		this.totalCatches = totalCatches;
 		this.totalMatches = totalMatches;
-		this.maxMatches = maxMatches;
-		this.player = player;
+		this.maxRuns = maxRuns;
+		this.maxWickets = maxWickets;
+		this.maxCatches = maxCatches;
+		this.matchIdForMaxRuns = matchIdForMaxRuns;
+		this.matchIdForMaxWickets = matchIdForMaxWickets;
+		this.matchIdForMaxCatches = matchIdForMaxCatches;
+		this.playerName = playerName;
+	}
+
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
+	}
+
+	public int getId()
+	{
+		return id;
 	}
 	
-	
-
-	public PlayerBean getPlayer() {
-		return player;
-	}
-
-	public void setPlayer(PlayerBean player) {
-		this.player = player;
-	}
-
 	public int getTotalRuns() {
 		return totalRuns;
 	}
@@ -98,13 +110,40 @@ public class PlayerRecord {
 		this.totalMatches = totalMatches;
 	}
 
-	public int getMaxMatches() {
-		return maxMatches;
+	public int getMaxCatches() {
+		return maxCatches;
 	}
 
-	public void setMaxMatches(int maxMatches) {
-		this.maxMatches = maxMatches;
+	public void setMaxCatches(int maxCatches) {
+		this.maxCatches = maxCatches;
 	}
+
+	public int getMatchIdForMaxRuns() {
+		return matchIdForMaxRuns;
+	}
+
+	public void setMatchIdForMaxRuns(int matchIdForMaxRuns) {
+		this.matchIdForMaxRuns = matchIdForMaxRuns;
+	}
+
+	public int getMatchIdForMaxWickets() {
+		return matchIdForMaxWickets;
+	}
+
+	public void setMatchIdForMaxWickets(int matchIdForMaxWickets) {
+		this.matchIdForMaxWickets = matchIdForMaxWickets;
+	}
+
+	public int getMatchIdForMaxCatches() {
+		return matchIdForMaxCatches;
+	}
+
+	public void setMatchIdForMaxCatches(int matchIdForMaxCatches) {
+		this.matchIdForMaxCatches = matchIdForMaxCatches;
+	}
+	
+	
+
 	
 	
 	

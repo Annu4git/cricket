@@ -10,6 +10,6 @@ public interface PlayerService {
 	public List<PlayerBean> getAllPlayer();
 	public PlayerBean updatePlayer(PlayerBean player);
 	public Optional<PlayerBean> getPlayer(int id);
-	public void deletePlayer(int id);
+	public String deletePlayer(int id);
 
 }
