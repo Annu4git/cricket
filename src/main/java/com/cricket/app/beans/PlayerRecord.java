@@ -1,22 +1,28 @@
 package com.cricket.app.beans;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="records")
 public class PlayerRecord {
-	
+
 	@Id
 	@Column(name = "record_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String playerName;
+	@OneToOne(mappedBy = "record", cascade = CascadeType.ALL,fetch = FetchType.LAZY)  // record is the name of Java class property(player class) not a table column
+	private PlayerBean player;   // to make OneToOne relation Bi-directional
 	private int totalRuns;
 	private int totalWicket;
 	private int totalCatches;
@@ -35,7 +41,7 @@ public class PlayerRecord {
 	}
 
 	public PlayerRecord(int totalRuns, int totalWicket, int totalCatches, int totalMatches, int maxRuns, int maxWickets,
-			int maxCatches, int matchIdForMaxRuns, int matchIdForMaxWickets, int matchIdForMaxCatches,String playerName) {
+			int maxCatches, int matchIdForMaxRuns, int matchIdForMaxWickets, int matchIdForMaxCatches,PlayerBean player) {
 		this.totalRuns = totalRuns;
 		this.totalWicket = totalWicket;
 		this.totalCatches = totalCatches;
@@ -46,15 +52,17 @@ public class PlayerRecord {
 		this.matchIdForMaxRuns = matchIdForMaxRuns;
 		this.matchIdForMaxWickets = matchIdForMaxWickets;
 		this.matchIdForMaxCatches = matchIdForMaxCatches;
-		this.playerName = playerName;
+		this.player = player;
 	}
 
-	public String getPlayerName() {
-		return playerName;
+	
+	@JsonManagedReference
+	public PlayerBean getPlayer() {
+		return player;
 	}
 
-	public void setPlayerName(String playerName) {
-		this.playerName = playerName;
+	public void setPlayer(PlayerBean player) {
+		this.player  = player;
 	}
 
 	public int getId()
@@ -143,7 +151,14 @@ public class PlayerRecord {
 	}
 	
 	
-
+	@Override
+	public String toString() {
+		return "PlayerRecord [id=" + id + ", player = " + player.getName() + ", totalRuns=" + totalRuns + ", totalWicket="
+				+ totalWicket + ", totalCatches=" + totalCatches + ", totalMatches=" + totalMatches + ", maxRuns="
+				+ maxRuns + ", maxWickets=" + maxWickets + ", maxCatches=" + maxCatches + ", matchIdForMaxRuns="
+				+ matchIdForMaxRuns + ", matchIdForMaxWickets=" + matchIdForMaxWickets + ", matchIdForMaxCatches="
+				+ matchIdForMaxCatches + "]";
+	}
 	
 	
 	

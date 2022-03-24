@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cricket.app.beans.PlayerBean;
+import com.cricket.app.beans.PlayerRecord;
 import com.cricket.app.service.PlayerService;
 
 @RestController
@@ -31,7 +32,7 @@ public class PlayerController {
 	}
 	
 	@GetMapping("/get/{id}")
-	public ResponseEntity<Optional<PlayerBean>> getPlayer(@PathVariable int id){
+	public ResponseEntity<PlayerBean> getPlayer(@PathVariable int id){
 		return ResponseEntity.ok(playerService.getPlayer(id));
 	}
 	
@@ -51,6 +52,13 @@ public class PlayerController {
 //		return ResponseEntity.status(HttpStatus.OK).build();
 		
 	}
+	
+	 @GetMapping("/getRecord/{id}") 
+	 public ResponseEntity<PlayerRecord> getRecord(@PathVariable int id){ 
+		 PlayerRecord record = playerService.getRecordByPlayerId(id);
+		 System.out.println(record);
+		 return ResponseEntity.ok(record); 
+		 }
 	
 	
 	

@@ -10,8 +10,7 @@ import com.cricket.app.utils.MessageStatus;
 public interface PlayerOperationsDao {
 	public PlayerBean addPlayer(PlayerBean player);
 	public List<PlayerBean> getAllPlayers();
-	public Optional<PlayerBean> getPlayer(int playerId);
+	public PlayerBean getPlayer(int playerId);
 	public PlayerBean updatePlayer(PlayerBean player);
 	public MessageStatus deletePlayer(int id);
-	public PlayerRecord getRecordByPlayerId(int playerId);
 }

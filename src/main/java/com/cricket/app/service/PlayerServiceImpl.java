@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cricket.app.beans.PlayerBean;
+import com.cricket.app.beans.PlayerRecord;
 import com.cricket.app.dao.PlayerOperationsDao;
 
 @Service
@@ -21,9 +22,9 @@ public class PlayerServiceImpl implements PlayerService{
 	}
 	
 	@Override
-	public Optional<PlayerBean> getPlayer(int id) {
-		// TODO Auto-generated method stub
-		return playerOp.getPlayer(id);
+	public PlayerBean getPlayer(int id) {
+		PlayerBean player = playerOp.getPlayer(id);
+		return player;
 	}
 
 	@Override
@@ -43,6 +44,14 @@ public class PlayerServiceImpl implements PlayerService{
 		// TODO Auto-generated method stub
 		return playerOp.deletePlayer(playerId).toString();
 		
+	}
+
+	@Override
+	public PlayerRecord getRecordByPlayerId(int playerid) {
+		// TODO Auto-generated method stub
+		PlayerRecord record = playerOp.getPlayer(playerid).getRecord();
+		System.out.println("line 53"+record);
+		return record;
 	}
 	
 }

@@ -29,11 +29,11 @@ public class RecordController {
 	 * @PostMapping("/add") public ResponseEntity<PlayerRecord>
 	 * addRecord(@RequestBody PlayerRecord player){ return
 	 * ResponseEntity.ok(recordService.addRecord(player)); }
-	 * 
-	 * @GetMapping("/get/{id}") public ResponseEntity<PlayerRecord>
-	 * getRecord(@PathVariable int id){ return
-	 * ResponseEntity.ok(recordService.getRecord(id)); }
 	 */
+	  @GetMapping("/get/{id}") public ResponseEntity<PlayerRecord>
+	  getRecord(@PathVariable int id){ return
+	  ResponseEntity.ok(recordService.getRecord(id)); }
+	 
 	@GetMapping("/getAll")
 	public ResponseEntity<List<PlayerRecord>> getAllRecords() {
 		return ResponseEntity.ok(recordService.getAllRecords());

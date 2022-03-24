@@ -7,6 +7,7 @@ import com.cricket.app.beans.PlayerRecord;
 
 public interface RecordService {
 //	public PlayerRecord addRecord(PlayerRecord record);
+	public PlayerRecord getRecord(int recordId);
 	public List<PlayerRecord> getAllRecords();
 	public PlayerRecord updateRecord(int playerId);
 	public void deleteRecord(int recordId);
@@ -16,4 +17,5 @@ public interface RecordService {
 	public PlayerRecord updateTotalCatches(int playerId,int catchCount);
 	public void updateMaxRuns(int playerId,int runs,int matchId);
 	public void updateMaxWickets(int playerId,int wicketCount,int matchId);
+	// work on get MAX wickets get max runs
 }

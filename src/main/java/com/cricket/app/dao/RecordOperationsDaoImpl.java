@@ -12,32 +12,35 @@ import com.cricket.app.beans.PlayerRecord;
 import com.cricket.app.repository.RecordRepository;
 
 @Repository
-public class RecordOperationsDaoImpl implements RecordOperationsDao{
+public class RecordOperationsDaoImpl implements RecordOperationsDao {
 	@Autowired
 	RecordRepository recordRepo;
-	
+
 	/*
 	 * public PlayerRecord addRecord(PlayerRecord record) { return
 	 * recordRepo.save(record); }
-	 * 
-	 * public PlayerRecord getRecord(int recordId){
-	 * 
-	 * return recordRepo.getRecord(recordId); }
 	 */
-	@Override
-	public List<PlayerRecord> getAllRecords()
-	{
-		return  recordRepo.findAll();
+	public PlayerRecord getRecord(int recordId) {
+		Optional<PlayerRecord> record = recordRepo.findById(recordId);
+		if(record.isPresent()) {
+			System.out.println(record);
+			System.out.println(record.get());
+		return record.get();
+		}
+		return null;
 	}
-	
-	public PlayerRecord updateRecord(PlayerRecord record){
+
+	@Override
+	public List<PlayerRecord> getAllRecords() {
+		return recordRepo.findAll();
+	}
+
+	public PlayerRecord updateRecord(PlayerRecord record) {
 		return recordRepo.save(record);
 	}
-	
+
 	public void deleteRecord(int recordId) {
 		recordRepo.deleteById(recordId);
 	}
-
-	
 
 }
