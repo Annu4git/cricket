@@ -16,18 +16,16 @@ public class RecordOperationsDaoImpl implements RecordOperationsDao {
 	@Autowired
 	RecordRepository recordRepo;
 
-	/*
-	 * public PlayerRecord addRecord(PlayerRecord record) { return
-	 * recordRepo.save(record); }
-	 */
+	
+	  public PlayerRecord addRecord(PlayerRecord record) { 
+		  return recordRepo.save(record); 
+		  }
+	 
 	public PlayerRecord getRecord(int recordId) {
-		Optional<PlayerRecord> record = recordRepo.findById(recordId);
-		if(record.isPresent()) {
+		PlayerRecord record = recordRepo.getById(recordId);
 			System.out.println(record);
-			System.out.println(record.get());
-		return record.get();
-		}
-		return null;
+		return record;
+	
 	}
 
 	@Override

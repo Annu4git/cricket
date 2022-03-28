@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,18 +30,23 @@ public class PlayerBean {
 	private PlayerRecord record;
 	private String name;
 	private String speciality;
-	
-
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH,CascadeType.DETACH })
+	@JoinColumn(name = "team_id")
+	private TeamBean team;
 	public PlayerBean() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PlayerBean(PlayerRecord record, String name, String speciality) {
 
+	public PlayerBean(PlayerRecord record, String name, String speciality, TeamBean team) {
+		super();
 		this.record = record;
 		this.name = name;
 		this.speciality = speciality;
+		this.team = team;
 	}
+
+
 
 	public int getId() {
 		return id;
@@ -69,11 +76,18 @@ public class PlayerBean {
 	public void setSpeciality(String speciality) {
 		this.speciality = speciality;
 	}
-	
-	@Override
-	public String toString() {
-		return "PlayerBean [id=" + id + ", record_id - " + record.getId() + ", name=" + name + ", speciality=" + speciality + "]";
+
+
+	public TeamBean getTeam() {
+		return team;
 	}
+
+
+	public void setTeam(TeamBean team) {
+		this.team = team;
+	}
+	
+	
 	
 	
 	

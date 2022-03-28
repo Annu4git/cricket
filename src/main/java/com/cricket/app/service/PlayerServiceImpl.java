@@ -14,11 +14,15 @@ import com.cricket.app.dao.PlayerOperationsDao;
 public class PlayerServiceImpl implements PlayerService{
 	@Autowired
 	PlayerOperationsDao playerOp;
+	@Autowired
+	RecordService recordService;
 	
 	@Override
 	public PlayerBean addPlayer(PlayerBean player) {
-		// TODO Auto-generated method stub
-		return playerOp.addPlayer(player);
+		PlayerRecord record = new PlayerRecord(0, 0, 0, 0, 0, 0, 0, 0, 0, 0,player);
+		 player.setRecord(record);
+		 record = recordService.addRecord(record);
+		return record.getPlayer();
 	}
 	
 	@Override
@@ -30,7 +34,7 @@ public class PlayerServiceImpl implements PlayerService{
 	@Override
 	public List<PlayerBean> getAllPlayer() {
 		// TODO Auto-generated method stub
-		return null;
+		return playerOp.getAllPlayers();
 	}
 
 	@Override
@@ -52,6 +56,11 @@ public class PlayerServiceImpl implements PlayerService{
 		PlayerRecord record = playerOp.getPlayer(playerid).getRecord();
 		System.out.println("line 53"+record);
 		return record;
+	}
+	
+	public boolean checkTeamForPlayer(PlayerBean player)
+	{
+		return getPlayer(player.getId()).getTeam() == null ? false : true; 
 	}
 	
 }

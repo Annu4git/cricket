@@ -56,7 +56,6 @@ public class PlayerController {
 	 @GetMapping("/getRecord/{id}") 
 	 public ResponseEntity<PlayerRecord> getRecord(@PathVariable int id){ 
 		 PlayerRecord record = playerService.getRecordByPlayerId(id);
-		 System.out.println(record);
 		 return ResponseEntity.ok(record); 
 		 }
 	

@@ -6,7 +6,7 @@ import java.util.Optional;
 import com.cricket.app.beans.PlayerRecord;
 
 public interface RecordService {
-//	public PlayerRecord addRecord(PlayerRecord record);
+	public PlayerRecord addRecord(PlayerRecord record);
 	public PlayerRecord getRecord(int recordId);
 	public List<PlayerRecord> getAllRecords();
 	public PlayerRecord updateRecord(int playerId);

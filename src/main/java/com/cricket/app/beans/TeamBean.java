@@ -1,6 +1,7 @@
 package com.cricket.app.beans;
 
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,17 +17,19 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-//@Entity
-//@Table(name = "team")
+@Entity
+@Table(name = "team")
 public class TeamBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="team_id")
 	private int id;
+	
 	private String name;
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
-			CascadeType.DETACH })
-	@JoinColumn(name = "team_id")
+	@Column(name="create_dt")
+	private Date date;
+	
+    @OneToMany(mappedBy="team",cascade = {CascadeType.MERGE, CascadeType.REFRESH,CascadeType.DETACH })
 	private List<PlayerBean> players;
 	
 	public TeamBean() {

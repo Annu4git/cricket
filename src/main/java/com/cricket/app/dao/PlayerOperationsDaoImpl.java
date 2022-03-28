@@ -19,8 +19,7 @@ public class PlayerOperationsDaoImpl implements PlayerOperationsDao{
 	PlayerRepository playerRepo;
 	
 	public PlayerBean addPlayer(PlayerBean player) {
-		PlayerRecord record = new PlayerRecord(0, 0, 0, 0, 0, 0, 0, 0, 0, 0,player);
-		 player.setRecord(record);
+		
 		return playerRepo.save(player);
 	}
 	
@@ -29,9 +28,9 @@ public class PlayerOperationsDaoImpl implements PlayerOperationsDao{
 	}
 	
 	public PlayerBean getPlayer(int id){
-		Optional<PlayerBean> player = playerRepo.findById(id);
+		PlayerBean player = playerRepo.getById(id);
 		System.out.println(player);
-		return player.get();
+		return player;
 	}
 	
 	public PlayerBean updatePlayer(PlayerBean player){

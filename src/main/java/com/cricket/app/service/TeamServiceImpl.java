@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cricket.app.beans.PlayerBean;
 import com.cricket.app.beans.TeamBean;
 import com.cricket.app.dao.TeamDao;
 @Service
@@ -19,13 +20,8 @@ public class TeamServiceImpl implements TeamService {
 	
 	@Override
 	public TeamBean addTeam(TeamBean team) {
-		// TODO Auto-generated method stub
-		for(int i=1;i<=3;i++)
-		{
-			team.addPlayer(playerService.getPlayer(i));
-		}
-//		return teamDao.addTeam(team);
-		return null;
+		return teamDao.addTeam(team);
+		
 	}
 
 	@Override

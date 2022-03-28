@@ -18,6 +18,11 @@ public class RecordServiceImpl implements RecordService{
 	@Autowired
 	PlayerOperationsDao playerOp;
 	
+	public PlayerRecord addRecord(PlayerRecord record)
+	{
+		return recordOp.addRecord(record);
+	}
+	
 	public List<PlayerRecord> getAllRecords()
 	{
 		return recordOp.getAllRecords();

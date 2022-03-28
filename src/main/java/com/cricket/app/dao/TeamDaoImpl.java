@@ -17,18 +17,18 @@ import com.cricket.app.repository.TeamRepository;
 @Repository
 public class TeamDaoImpl implements TeamDao {
 	
-	/*
-	 * @Autowired TeamRepository teamRepo;
-	 * 
-	 * @Override public TeamBean addTeam(TeamBean team) {
-	 * 
-	 * return teamRepo.save(team); }
-	 * 
-	 * @Override public TeamBean getTeam(int id) {
-	 * 
-	 * return teamRepo.getById(id); //find by Id can also be used }
-	 */
-
 	
-
+	  @Autowired TeamRepository teamRepo;
+	  
+	  @Override public TeamBean addTeam(TeamBean team) {
+	  
+	  return teamRepo.save(team); 
+	  }
+	  
+	  @Override public TeamBean getTeam(int id) {
+	  
+	  return teamRepo.getById(id); //find by Id can also be used
+	  
+	  }
+	 
 }
