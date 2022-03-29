@@ -1,5 +1,6 @@
 package com.cricket.app.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,11 +26,13 @@ public class TeamServiceImpl implements TeamService {
 		TeamBean addedTeam = teamDao.addTeam(newTeam);
 		System.out.println("xxxxxxxxxxxxxxxxx"+addedTeam.getId());
 		newTeam.setId(addedTeam.getId());
+		List<PlayerBean> updatedPlayers = new ArrayList();
 		for(PlayerBean player: team.getPlayers()) {
 			PlayerBean currPlayer = playerService.getPlayer(player.getId());
 			currPlayer.setTeam(newTeam);
+			updatedPlayers.add(currPlayer);
 		}
-		newTeam.setPlayers(team.getPlayers());
+		newTeam.setPlayers(updatedPlayers);
 		
 		return teamDao.addTeam(newTeam);
 		
