@@ -8,7 +8,7 @@ import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import com.cricket.app.beans.PlayerRecord;
+import com.cricket.app.beans.RecordBean;
 import com.cricket.app.repository.RecordRepository;
 
 @Repository
@@ -17,23 +17,23 @@ public class RecordOperationsDaoImpl implements RecordOperationsDao {
 	RecordRepository recordRepo;
 
 	
-	  public PlayerRecord addRecord(PlayerRecord record) { 
+	  public RecordBean addRecord(RecordBean record) { 
 		  return recordRepo.save(record); 
 		  }
 	 
-	public PlayerRecord getRecord(int recordId) {
-		PlayerRecord record = recordRepo.getById(recordId);
+	public RecordBean getRecord(int recordId) {
+		RecordBean record = recordRepo.getById(recordId);
 			System.out.println(record);
 		return record;
 	
 	}
 
 	@Override
-	public List<PlayerRecord> getAllRecords() {
+	public List<RecordBean> getAllRecords() {
 		return recordRepo.findAll();
 	}
 
-	public PlayerRecord updateRecord(PlayerRecord record) {
+	public RecordBean updateRecord(RecordBean record) {
 		return recordRepo.save(record);
 	}
 

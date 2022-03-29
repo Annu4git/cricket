@@ -5,12 +5,12 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.cricket.app.beans.PlayerRecord;
+import com.cricket.app.beans.RecordBean;
 
 public interface RecordOperationsDao  {
-	public PlayerRecord addRecord(PlayerRecord record);
-	public PlayerRecord getRecord(int recordId);
-	public List<PlayerRecord> getAllRecords();
-	public PlayerRecord updateRecord(PlayerRecord record);
+	public RecordBean addRecord(RecordBean record);
+	public RecordBean getRecord(int recordId);
+	public List<RecordBean> getAllRecords();
+	public RecordBean updateRecord(RecordBean record);
 	public void deleteRecord(int playerId);
 }

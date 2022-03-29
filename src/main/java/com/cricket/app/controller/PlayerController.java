@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cricket.app.beans.PlayerBean;
-import com.cricket.app.beans.PlayerRecord;
+import com.cricket.app.beans.RecordBean;
 import com.cricket.app.service.PlayerService;
 
 @RestController
@@ -54,8 +54,8 @@ public class PlayerController {
 	}
 	
 	 @GetMapping("/getRecord/{id}") 
-	 public ResponseEntity<PlayerRecord> getRecord(@PathVariable int id){ 
-		 PlayerRecord record = playerService.getRecordByPlayerId(id);
+	 public ResponseEntity<RecordBean> getRecord(@PathVariable int id){ 
+		 RecordBean record = playerService.getRecordByPlayerId(id);
 		 return ResponseEntity.ok(record); 
 		 }
 	

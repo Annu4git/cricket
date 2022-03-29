@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cricket.app.beans.PlayerRecord;
+import com.cricket.app.beans.RecordBean;
 import com.cricket.app.service.RecordService;
 
 @RestController
@@ -30,21 +30,21 @@ public class RecordController {
 	 * addRecord(@RequestBody PlayerRecord player){ return
 	 * ResponseEntity.ok(recordService.addRecord(player)); }
 	 */
-	  @GetMapping("/get/{id}") public ResponseEntity<PlayerRecord>
+	  @GetMapping("/get/{id}") public ResponseEntity<RecordBean>
 	  getRecord(@PathVariable int id){ return
 	  ResponseEntity.ok(recordService.getRecord(id)); }
 	 
 	@GetMapping("/getAll")
-	public ResponseEntity<List<PlayerRecord>> getAllRecords() {
+	public ResponseEntity<List<RecordBean>> getAllRecords() {
 		return ResponseEntity.ok(recordService.getAllRecords());
 	}
 	@PutMapping("/update/totalRuns")
-	public ResponseEntity<PlayerRecord> updateTotalRuns(@RequestParam int playerId,@RequestParam int runs){
+	public ResponseEntity<RecordBean> updateTotalRuns(@RequestParam int playerId,@RequestParam int runs){
 		return ResponseEntity.ok(recordService.updateTotalRuns(playerId,runs));
 	}
 	
 	@PutMapping("/update/totalWickets")
-	public ResponseEntity<PlayerRecord> updateTotalWicket(@RequestParam int playerId,@RequestParam int wicketCount){
+	public ResponseEntity<RecordBean> updateTotalWicket(@RequestParam int playerId,@RequestParam int wicketCount){
 		return ResponseEntity.ok(recordService.updateTotalWicket(playerId,wicketCount));
 	}
 	
@@ -58,11 +58,11 @@ public class RecordController {
 		recordService.updateMaxWickets(playerId,wicketCount,matchId);
 	}
 	@PutMapping("/update/totalMatches")
-	public ResponseEntity<PlayerRecord> updateTotalMatches(@RequestParam int playerId,@RequestParam int matchCount){
+	public ResponseEntity<RecordBean> updateTotalMatches(@RequestParam int playerId,@RequestParam int matchCount){
 		return ResponseEntity.ok(recordService.updateTotalMatches(playerId,matchCount));
 	}
 	@PutMapping("/update/totalCatches")
-	public ResponseEntity<PlayerRecord> updateTotalCatches(@RequestParam int playerId,@RequestParam int catchCount){
+	public ResponseEntity<RecordBean> updateTotalCatches(@RequestParam int playerId,@RequestParam int catchCount){
 		return ResponseEntity.ok(recordService.updateTotalCatches(playerId,catchCount));
 	}
 
@@ -73,7 +73,7 @@ public class RecordController {
 	 * ResponseEntity.ok(recordService.updateMaxMatches(playerId,matchCount)); }
 	 */
 	@PutMapping("/update")
-	public ResponseEntity<PlayerRecord> updateRecord(@RequestParam int playerId){
+	public ResponseEntity<RecordBean> updateRecord(@RequestParam int playerId){
 		return ResponseEntity.ok(recordService.updateRecord(playerId));
 	}
 	

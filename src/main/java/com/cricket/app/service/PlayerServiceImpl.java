@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cricket.app.beans.PlayerBean;
-import com.cricket.app.beans.PlayerRecord;
+import com.cricket.app.beans.RecordBean;
 import com.cricket.app.dao.PlayerOperationsDao;
 
 @Service
@@ -19,7 +19,7 @@ public class PlayerServiceImpl implements PlayerService{
 	
 	@Override
 	public PlayerBean addPlayer(PlayerBean player) {
-		PlayerRecord record = new PlayerRecord(0, 0, 0, 0, 0, 0, 0, 0, 0, 0,player);
+		RecordBean record = new RecordBean(0, 0, 0, 0, 0, 0, 0, 0, 0, 0,player);
 		 player.setRecord(record);
 		 record = recordService.addRecord(record);
 		return record.getPlayer();
@@ -51,9 +51,9 @@ public class PlayerServiceImpl implements PlayerService{
 	}
 
 	@Override
-	public PlayerRecord getRecordByPlayerId(int playerid) {
+	public RecordBean getRecordByPlayerId(int playerid) {
 		// TODO Auto-generated method stub
-		PlayerRecord record = playerOp.getPlayer(playerid).getRecord();
+		RecordBean record = playerOp.getPlayer(playerid).getRecord();
 		System.out.println("line 53"+record);
 		return record;
 	}

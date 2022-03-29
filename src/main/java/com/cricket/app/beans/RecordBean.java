@@ -16,12 +16,14 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name="records")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class PlayerRecord {
+public class RecordBean {
 
 	@Id
 	@Column(name = "record_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@JsonIgnoreProperties("record")
 	@OneToOne(mappedBy = "record", cascade = CascadeType.ALL,fetch = FetchType.LAZY)  // record is the name of Java class property(player class) not a table column
 	private PlayerBean player;   // to make OneToOne relation Bi-directional
 	private int totalRuns;
@@ -37,11 +39,11 @@ public class PlayerRecord {
 	private int matchIdForMaxWickets;
 	private int matchIdForMaxCatches;
 	
-	public PlayerRecord() {
+	public RecordBean() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PlayerRecord(int totalRuns, int totalWicket, int totalCatches, int totalMatches, int maxRuns, int maxWickets,
+	public RecordBean(int totalRuns, int totalWicket, int totalCatches, int totalMatches, int maxRuns, int maxWickets,
 			int maxCatches, int matchIdForMaxRuns, int matchIdForMaxWickets, int matchIdForMaxCatches,PlayerBean player) {
 		this.totalRuns = totalRuns;
 		this.totalWicket = totalWicket;
@@ -57,7 +59,7 @@ public class PlayerRecord {
 	}
 
 	
-	@JsonManagedReference
+//	@JsonManagedReference
 	public PlayerBean getPlayer() {
 		return player;
 	}

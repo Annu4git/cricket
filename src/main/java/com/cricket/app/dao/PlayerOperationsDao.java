@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.cricket.app.beans.PlayerBean;
-import com.cricket.app.beans.PlayerRecord;
+import com.cricket.app.beans.RecordBean;
 import com.cricket.app.utils.MessageStatus;
 
 public interface PlayerOperationsDao {

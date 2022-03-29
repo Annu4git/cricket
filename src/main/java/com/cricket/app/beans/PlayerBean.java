@@ -25,11 +25,15 @@ public class PlayerBean {
 	@Column(name="player_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@JsonIgnoreProperties("player")
 	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JoinColumn(name = "record_id")
-	private PlayerRecord record;
+	private RecordBean record;
 	private String name;
 	private String speciality;
+	
+	@JsonIgnoreProperties("player")
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH,CascadeType.DETACH })
 	@JoinColumn(name = "team_id")
 	private TeamBean team;
@@ -38,7 +42,7 @@ public class PlayerBean {
 	}
 
 
-	public PlayerBean(PlayerRecord record, String name, String speciality, TeamBean team) {
+	public PlayerBean(RecordBean record, String name, String speciality, TeamBean team) {
 		super();
 		this.record = record;
 		this.name = name;
@@ -52,12 +56,12 @@ public class PlayerBean {
 		return id;
 	}
 	
-	@JsonBackReference
-	public PlayerRecord getRecord() {
+//	@JsonBackReference
+	public RecordBean getRecord() {
 		return record;
 	}
 
-	public void setRecord(PlayerRecord record) {
+	public void setRecord(RecordBean record) {
 		this.record = record;
 	}
 
@@ -76,7 +80,6 @@ public class PlayerBean {
 	public void setSpeciality(String speciality) {
 		this.speciality = speciality;
 	}
-
 
 	public TeamBean getTeam() {
 		return team;

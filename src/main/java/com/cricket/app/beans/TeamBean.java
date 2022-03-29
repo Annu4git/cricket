@@ -15,10 +15,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "team")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 public class TeamBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,27 +29,34 @@ public class TeamBean {
 	private int id;
 	
 	private String name;
-	@Column(name="create_dt")
-	private Date date;
+//	@Column(name="create_dt")
+//	private Date date;
 	
+	@JsonIgnoreProperties("team")
     @OneToMany(mappedBy="team",cascade = {CascadeType.MERGE, CascadeType.REFRESH,CascadeType.DETACH })
 	private List<PlayerBean> players;
 	
 	public TeamBean() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
+
 	public TeamBean(String name, List<PlayerBean> players) {
+		super();
 		this.name = name;
 		this.players = players;
 	}
-
 
 
 	public int getId() {
 		return id;
 	}
 	
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -55,7 +65,7 @@ public class TeamBean {
 		this.name = name;
 	}
 
-//	@JsonManagedReference
+	
 	public List<PlayerBean> getPlayers() {
 		return players;
 	}
@@ -73,10 +83,10 @@ public class TeamBean {
 		players.add(player);
 	}
 
-	@Override
-	public String toString() {
-		return "TeamBean [id=" + id + ", name=" + name + ", players=" + players + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "TeamBean [id=" + id + ", name=" + name + ", players=" + players + "]";
+//	}
 	
 	
 

@@ -20,7 +20,18 @@ public class TeamServiceImpl implements TeamService {
 	
 	@Override
 	public TeamBean addTeam(TeamBean team) {
-		return teamDao.addTeam(team);
+		TeamBean newTeam = new TeamBean();
+		newTeam.setName(team.getName());
+		TeamBean addedTeam = teamDao.addTeam(newTeam);
+		System.out.println("xxxxxxxxxxxxxxxxx"+addedTeam.getId());
+		newTeam.setId(addedTeam.getId());
+		for(PlayerBean player: team.getPlayers()) {
+			PlayerBean currPlayer = playerService.getPlayer(player.getId());
+			currPlayer.setTeam(newTeam);
+		}
+		newTeam.setPlayers(team.getPlayers());
+		
+		return teamDao.addTeam(newTeam);
 		
 	}
 

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.cricket.app.beans.PlayerBean;
-import com.cricket.app.beans.PlayerRecord;
+import com.cricket.app.beans.RecordBean;
 
 
 public interface PlayerRepository extends JpaRepository<PlayerBean, Integer>{
